@@ -1,5 +1,5 @@
 
-注意：fabric现在支持leveldb和couchdb两种存储方式，由于账本和历史库只支持增和读所以默认为leveldb不可变。只有世界状态（state，业务参数）才可以选择存储方式。
+注意：fabric现在支持leveldb和couchdb两种存储方式，由于账本和历史库只支持增和读，账本以文件形式存储，历史库默认为leveldb且不可变。只有世界状态（state，业务参数）才可以选择存储方式。
 
 couchdb提供了非常丰富的restful api 以example02为例（存储了a、b两个值），查询b的数值：
 
