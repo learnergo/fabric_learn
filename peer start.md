@@ -257,6 +257,7 @@ func serve(args []string) error {
 - 注册链码服务
 - 注册Admin服务
 - 注册Endorser服务
+- gossip 服务支持
 ```
 
 ---------------------
