@@ -1,20 +1,20 @@
-##### helloworld.proto ¶¨Òå
+##### helloworld.proto å®šä¹‰
 
-helloworld Àı×Ó¶¨Òå»¹ÊÇ±È½Ï¼òµ¥µÄ£¬Ò»¸ö·şÎñºÍÁ½¸öÊµÌå
+helloworld ä¾‹å­å®šä¹‰è¿˜æ˜¯æ¯”è¾ƒç®€å•çš„ï¼Œä¸€ä¸ªæœåŠ¡å’Œä¸¤ä¸ªå®ä½“
 
 
 ```
 service Greeter {
-  // ·şÎñ¶¯×÷
+  // æœåŠ¡åŠ¨ä½œ
   rpc SayHello (HelloRequest) returns (HelloReply) {}
 }
 
-// ÇëÇó²ÎÊı
+// è¯·æ±‚å‚æ•°
 message HelloRequest {
   string name = 1;
 }
 
-// ÇëÇóÏàÓ¦
+// è¯·æ±‚ç›¸åº”
 message HelloReply {
   string message = 1;
 }
@@ -24,22 +24,22 @@ message HelloReply {
 ##### Client API for the service
 
 ```
-// ¿Í»§¶Ë½Ó¿Ú
+// å®¢æˆ·ç«¯æ¥å£
 type GreeterClient interface {
 	SayHello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloReply, error)
 }
 
-// ½Ó¿ÚÊµÏÖ
+// æ¥å£å®ç°
 type greeterClient struct {
 	cc *grpc.ClientConn
 }
 
-// ½Ó¿Ú¶ÔÏó¹¹Ôì
+// æ¥å£å¯¹è±¡æ„é€ , å®¢æˆ·ç«¯è°ƒç”¨è¦ä¼ å…¥ClientConnæŒ‡æ˜æœåŠ¡ç«¯åœ°å€åŠå„ç§è¯·æ±‚é…ç½®ï¼Œå¦‚é€šè®¯åŠ å¯†ç­‰ç­‰
 func NewGreeterClient(cc *grpc.ClientConn) GreeterClient {
 	return &greeterClient{cc}
 }
 
-// ½Ó¿ÚÊµÀıµÄ·½·¨ÊµÏÖ
+// æ¥å£å®ä¾‹çš„æ–¹æ³•å®ç°
 func (c *greeterClient) SayHello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloReply, error) {
 	out := new(HelloReply)
 	err := grpc.Invoke(ctx, "/helloworld.Greeter/SayHello", in, out, c.cc, opts...)
@@ -55,17 +55,17 @@ func (c *greeterClient) SayHello(ctx context.Context, in *HelloRequest, opts ...
 
 
 ```
-// ·şÎñ¶Ë½Ó¿Ú¶¨Òå
+// æœåŠ¡ç«¯æ¥å£å®šä¹‰
 type GreeterServer interface {
 	SayHello(context.Context, *HelloRequest) (*HelloReply, error)
 }
 
-//grpc ·şÎñ×¢²á
+//grpc æœåŠ¡æ³¨å†Œ
 func RegisterGreeterServer(s *grpc.Server, srv GreeterServer) {
 	s.RegisterService(&_Greeter_serviceDesc, srv)
 }
 
-// ÏÂÃæÒ»¸ö±äÁ¿Ò»¸öº¯Êı£¬Ö÷Òª×÷ÓÃÓÚ·şÎñ×¢²á
+// ä¸‹é¢ä¸€ä¸ªå˜é‡ä¸€ä¸ªå‡½æ•°ï¼Œä¸»è¦ä½œç”¨äºæœåŠ¡æ³¨å†Œ
 var _Greeter_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "helloworld.Greeter",
 	HandlerType: (*GreeterServer)(nil),
@@ -99,13 +99,13 @@ func _Greeter_SayHello_Handler(srv interface{}, ctx context.Context, dec func(in
 
 ```
 
-##### client ºÍ server Çø±ğ
+##### client å’Œ server åŒºåˆ«
 
 
 ```
-grpc ±¾À´¾ÍÊÇ½â¾öÔ¶³Ìµ÷ÓÃ£¬ÈÃ¿Í»§¶ËÈçÍ¬µ÷ÓÃ±¾µØ·½·¨Ò»Ñù·½±ã¡£ Èç´Ë£¬grpc ¶ÔÌ×½Ó²ã×öÁËºÜºÃµÄ·Ö×°£¬ÈçÍ¨Ñ¶µÈµÈ¡£
-ËùÒÔ£¬client api²»½ö¶¨ÒåÁË½Ó¿Ú£¬»¹Ìá¹©ÁË½Ó¿ÚÊµÏÖ£¬¿Í»§¶ËÖ±½Óµ÷ÓÃ·½·¨¼´¿É£»
-¶ø·şÎñ¶ËÃ»ÓĞÌá¹©½Ó¿ÚÊµÏÖ£¬µ«Ìá¹©ÁË¡°·şÎñ×¢²á¡±¹¦ÄÜ
+grpc æœ¬æ¥å°±æ˜¯è§£å†³è¿œç¨‹è°ƒç”¨ï¼Œè®©å®¢æˆ·ç«¯å¦‚åŒè°ƒç”¨æœ¬åœ°æ–¹æ³•ä¸€æ ·æ–¹ä¾¿ã€‚ å¦‚æ­¤ï¼Œgrpc å¯¹å¥—æ¥å±‚åšäº†å¾ˆå¥½çš„åˆ†è£…ï¼Œå¦‚é€šè®¯ç­‰ç­‰ã€‚
+æ‰€ä»¥ï¼Œclient apiä¸ä»…å®šä¹‰äº†æ¥å£ï¼Œè¿˜æä¾›äº†æ¥å£å®ç°ï¼Œå®¢æˆ·ç«¯ç›´æ¥è°ƒç”¨æ–¹æ³•å³å¯ï¼›
+è€ŒæœåŠ¡ç«¯æ²¡æœ‰æä¾›æ¥å£å®ç°ï¼Œä½†æä¾›äº†â€œæœåŠ¡æ³¨å†Œâ€åŠŸèƒ½
 
-´Ó¶øÈÃ¿Í»§¶Ë×¨×¢ÓÚµ÷ÓÃ£¬ÈÃ·şÎñ¶Ë×¨×¢ÓÚÒµÎñÊµÏÖ£¨×îºó×¢²á¾ÍĞĞ£©
+ä»è€Œè®©å®¢æˆ·ç«¯ä¸“æ³¨äºè°ƒç”¨ï¼Œè®©æœåŠ¡ç«¯ä¸“æ³¨äºä¸šåŠ¡å®ç°ï¼ˆæœ€åæ³¨å†Œå°±è¡Œï¼‰
 ```
