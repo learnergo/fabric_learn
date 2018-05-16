@@ -85,3 +85,5 @@ core/ledger/kvledger/kv_ledger.go  ledger.PeerLedger的实现
 core/ledger/kvledger/kv_ledger_provider.go 上面一直在说的Provider的实现文件
 core/ledger/kvledger/history history库实现
 core/ledger/kvledger/txmgmt 世界状态库实现，但其中有重要的交易校验有机会再讲
+------------------------------------
+代码版本：v1.0.0
