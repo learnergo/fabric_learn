@@ -1,0 +1,20 @@
+```
+mkdir -p $GOPATH/src/golang.org/x/
+cd $GOPATH/src/golang.org/x/
+git clone https://github.com/golang/net.git
+git clone https://github.com/golang/tools.git
+git clone https://github.com/golang/lint.git
+git clone https://github.com/golang/crypto.git
+git clone https://github.com/golang/sys.git
+git clone https://github.com/golang/text.git
+```
+```
+go get github.com/cloudflare/cfssl
+go get github.com/mitchellh/mapstructure
+go get github.com/spf13/cast
+go get github.com/spf13/viper
+```
+```
+git clone https://github.com/grpc/grpc-go.git $GOPATH/src/google.golang.org/grpc
+git clone https://github.com/google/go-genproto.git $GOPATH/src/google.golang.org/genproto
+```
